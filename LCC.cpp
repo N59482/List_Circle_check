@@ -75,6 +75,18 @@ class List
 };
 
 
+bool isCircle(List & l) // не работает потому что р2 выходит за границы списка.
+    {
+        auto * p2 = l.head->next;
+        for (auto * p1 = l.head; p1 != nullptr; p1 = p1->next)
+            {
+                if(p1 == p2) return true;
+                p2 = p2->next->next;
+            };
+        return false;
+    };
+
+
 int main()
 {
     srand(time(0));
@@ -83,8 +95,12 @@ int main()
 
     l.show();
 
+    cout<<((isCircle(l))? "Circle detected" : "no Circle here!")<<endl;// не работает
+
     l.Make_Circle();
 
     l.Circle_show(20);
+
+    cout<<((isCircle(l))? "Circle detected" : "no Circle here!")<<endl;// тут работает
     return 0;
 }
